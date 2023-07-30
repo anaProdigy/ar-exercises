@@ -18,7 +18,22 @@ store_name = gets.chomp
 # Display the store name entered by the user
 puts "You entered: #{store_name}"
 
-store = Store.create(name: store_name)
+# Assuming the 'annual_revenue' attribute is required by validations
+puts "Enter the annual revenue for the store:"
+annual_revenue = gets.chomp.to_i
+
+puts "Does the store carry men's apparel? (true/false)"
+carries_mens_apparel = gets.chomp.downcase == 'true'
+
+puts "Does the store carry women's apparel? (true/false)"
+carries_womens_apparel = gets.chomp.downcase == 'true'
+
+store = Store.create(
+  name: store_name,
+  annual_revenue: annual_revenue,
+  carries_mens_apparel: carries_mens_apparel,
+  carries_womens_apparel: carries_womens_apparel
+)
 
 if store.save
   puts "Store created successfully"
